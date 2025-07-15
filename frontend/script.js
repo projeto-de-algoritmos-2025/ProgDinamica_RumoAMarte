@@ -80,4 +80,72 @@ document.addEventListener('DOMContentLoaded', () => {
             planMissionBtn.textContent = 'Planejar Carga Ideal!';
         }
     }
+
+
+
+    async function visualize(data) {
+        const { items, capacity, result, mode } = data;
+
+        if (mode === 'recursive') {
+            await visualizeRecursion(items, capacity, result);
+        } else {
+            await visualizeIteration(items, capacity, result);
+        }
+    }
+
+    async function visualizeIteration(items, capacity, result) {
+        const { dp_table, selected_items } = result;
+        generateTable(items, capacity);
+        explanationText.innerHTML = `Tabela inicializada usando o método <strong>Iterativo</strong>. O algoritmo agora preencherá a tabela linha por linha, de cima para baixo.`;
+        await sleep(2000);
+
+        await fillTable(items, dp_table);
+
+        await highlightPath(items, capacity, dp_table);
+
+        showFinalSelectionAndEnd(result);
+    }
+    function resetUI() {
+        dpTable.innerHTML = '';
+
+        finalCargoContainer.innerHTML = '';
+
+        selectedValueSpan.textContent = '0';
+        selectedWeightSpan.textContent = '0';
+
+        document.querySelectorAll('.item-card.selected').forEach(card => {
+            card.classList.remove('selected');
+        });
+
+        rocket.classList.remove('launch');
+
+        explanationText.innerHTML = 'Ajuste o controle de capacidade e clique em "Planejar Carga Ideal!" para começar.';
+        document.querySelector('.explanation-box').style.backgroundColor = 'rgba(0,0,0,0.4)';
+    }
+
+    function generateTable(items, capacity) {
+        dpTable.innerHTML = '';
+
+        const thead = document.createElement('thead');
+        let headerRow = '<tr><th class="item-header">Item</th>';
+        for (let w = 0; w <= capacity; w++) {
+            headerRow += `<th>${w}kg</th>`;
+        }
+        headerRow += '</tr>';
+        thead.innerHTML = headerRow;
+        dpTable.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        for (let i = 1; i < items.length + 1; i++) {
+            let row = `<tr>`;
+            const item = items[i - 1];
+            row += `<td class="item-header">${item.emoji} ${item.name}</td>`;
+            for (let w = 0; w <= capacity; w++) {
+                row += `<td id="cell-${i}-${w}">0</td>`;
+            }
+            row += '</tr>';
+            tbody.innerHTML += row;
+        }
+        dpTable.appendChild(tbody);
+    }
 });
