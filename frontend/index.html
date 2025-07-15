@@ -74,8 +74,34 @@
                 </div>
                 <button id="plan-mission-btn">Planejar Carga Ideal!</button>
             </div>
+
+            <div id="visualization-container" class="visualization-container">
+                <div class="available-items-container">
+                    <h2>Itens de Carga Disponíveis</h2>
+                    <div id="available-items" class="items-grid">
+                        <!-- Itens serão inseridos dinamicamente aqui por script.js -->
+                    </div>
+                </div>
+                <div id="explanation-box" class="explanation-box">
+                    <h2>Explicação</h2>
+                    <p id="explanation-text">Clique em "Planejar Carga Ideal!"
+                        para iniciar a visualização.</p>
+                </div>
+                <div class="visualization-bottom">
+                    <h2>Matriz de Decisão</h2>
+                    <div class="table-wrapper">
+                        <table id="dp-table">
+                            <!-- A tabela de DP será gerada dinamicamente aqui -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
         <footer>
             <p>Autores: Arthur Ferreira e Augusto Durães</p>
         </footer>
+
+        <script src="script.js"></script>
     </body>
 </html>
