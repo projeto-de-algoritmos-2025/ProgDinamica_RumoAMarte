@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Planejador de Carga para Marte 🚀</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Planejador de Carga para Marte 🚀</h1>
+            <p>Otimizando nossa carga para o Planeta Vermelho usando Programação
+                Dinâmica!</p>
+            <div class="mission-overview">
+                <div class="rocket-display">
+                    <h2>Foguete da Missão</h2>
+                    <div id="rocket" class="rocket-art">
+                        <div class="rocket-body">
+                            <div class="rocket-window"></div>
+                            <div class="rocket-fins">
+                                <div class="fin"></div>
+                                <div class="fin"></div>
+                            </div>
+                        </div>
+                        <div class="rocket-flame-container">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                    <div class="rocket-info">
+                        <p>Capacidade: <span id="rocket-capacity">20</span>
+                            kg</p>
+                    </div>
+                    <div class="capacity-slider-container">
+                        <label for="capacity-slider">Ajustar Capacidade:</label>
+                        <input type="range" id="capacity-slider"
+                            name="capacity-slider" min="10" max="80" value="20">
+                    </div>
+                </div>
+                <div class="final-cargo-display">
+                    <h2>Carga Final</h2>
+                    <div class="rocket-info">
+                        <p>Valor Selecionado: <span
+                                id="selected-value">0</span></p>
+                        <p>Peso Selecionado: <span id="selected-weight">0</span>
+                            kg</p>
+                    </div>
+                    <div id="final-cargo" class="items-grid">
+                        <!-- Itens selecionados serão movidos para cá -->
+                    </div>
+                </div>
+            </div>
+        </header>
+    </body>
+</html>
