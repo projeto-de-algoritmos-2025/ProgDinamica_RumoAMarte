@@ -1,0 +1,9 @@
+/* --- Configurações Gerais --- */
+body {
+    background-color: #1a0902; /* Marrom-avermelhado escuro, como o solo marciano */
+    color: #f0e6d2; /* Cor de areia, pergaminho para o texto */
+    font-family: "Space Mono", monospace;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
