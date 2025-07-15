@@ -200,3 +200,223 @@ footer {
         transform: scaleY(1.2) scaleX(1.1);
     }
 }
+
+.capacity-slider-container {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 90%;
+    height: 8px;
+    background: #5a2d0c;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+input[type="range"]:hover {
+    opacity: 1;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ff8c00;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #1a0902;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ff8c00;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #1a0902;
+}
+
+.rocket-info p {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+.rocket-info span {
+    color: #00ffea;
+    font-weight: bold;
+}
+
+/* --- Botões & Controles --- */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.mode-selector,
+.instant-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.mode-selector label,
+.instant-selector label {
+    cursor: pointer;
+}
+
+.mode-selector input[type="radio"],
+.instant-selector input[type="checkbox"] {
+    cursor: pointer;
+}
+
+#plan-mission-btn {
+    background-color: #ff8c00;
+    color: #1a0902;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition:
+        background-color 0.3s,
+        transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+#plan-mission-btn:hover {
+    background-color: #ffa533;
+    transform: translateY(-2px);
+}
+#plan-mission-btn:disabled {
+    background-color: #a08c72;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- Visualização da Tabela DP --- */
+.visualization-container {
+    background-color: rgba(10, 20, 30, 0.6);
+    border: 2px solid #00ffea;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none; /* Inicialmente oculto */
+}
+
+/* Remove o layout lado a lado para a seção superior */
+.visualization-top {
+    display: block;
+}
+.visualization-top .available-items-container,
+.visualization-top #explanation-box {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.visualization-top .available-items-container {
+    background-color: rgba(44, 20, 10, 0.5);
+    border: 2px solid #ff8c00;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+}
+
+.explanation-box {
+    background: rgba(0, 0, 0, 0.4);
+    border-left: 4px solid #ff8c00;
+    padding: 15px;
+    margin: 0 auto 20px;
+    max-width: 100%; /* Garante que ocupe a largura total */
+    text-align: left;
+    border-radius: 5px;
+    min-height: 50px; /* Para evitar saltos no layout */
+    transition: background-color 0.5s;
+    margin-top: 20px;
+}
+
+#explanation-text {
+    color: #cceeff;
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+#explanation-text strong {
+    color: #00ffea; /* Ciano para ênfase */
+}
+
+#explanation-text .value {
+    color: #ff8c00; /* Laranja para valores */
+    font-weight: bold;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+#dp-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 0.8em;
+}
+
+#dp-table th,
+#dp-table td {
+    border: 1px solid #4a808c;
+    padding: 8px 12px;
+    min-width: 50px;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
+}
+
+#dp-table th {
+    background-color: #0d2f3a;
+    color: #00ffea;
+}
+
+#dp-table th.item-header {
+    font-size: 1.2em;
+    padding-right: 15px;
+    text-align: left;
+}
+
+#dp-table td {
+    background-color: #081c24;
+}
+
+/* --- Classes de Animação --- */
+.current-cell {
+    background-color: #ff8c00 !important;
+    color: #1a0902 !important;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.recursive-call {
+    background-color: rgba(100, 100, 255, 0.6) !important; /* Azul para 'chamada' */
+    transition: background-color 0.1s;
+}
+
+.memo-hit {
+    background-color: rgba(0, 255, 100, 0.6) !important; /* Verde para 'acerto' (no cache) */
+    transition: background-color 0.1s;
+}
+
+.path-cell {
+    background-color: #00ffea !important;
+    color: #1a0902 !important;
+    font-weight: bold;
+}
