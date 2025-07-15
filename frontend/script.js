@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const capacitySlider = document.getElementById('capacity-slider');
     const instantExecutionCheckbox = document.getElementById('instant-execution');
 
+    const API_URL = 'http://127.0.0.1:5000/api/knapsack';
+    let allItems = [];
     let isInstant = false;
 
     const sleep = (ms) => {
@@ -39,4 +41,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     planMissionBtn.addEventListener('click', handleMissionButtonClick);
-})
+
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            allItems = data.items;
+            availableItemsContainer.innerHTML = '';
+            allItems.forEach(item => {
+                const card = createItemCard(item);
+                availableItemsContainer.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching initial data:', error);
+            explanationText.textContent = 'Erro: Não foi possível conectar ao servidor de controle da missão. O backend Python está em execução?';
+        });
+
+    async function handleMissionButtonClick() {
+        if (planMissionBtn.textContent === 'Reiniciar Missão') {
+            resetUI();
+        }
+
+        planMissionBtn.disabled = true;
+        planMissionBtn.textContent = 'Calculando...';
+        visualizationContainer.style.display = 'block';
+
+        try {
+            const capacity = capacitySlider.value;
+            const mode = document.querySelector('input[name="algorithm-mode"]:checked').value;
+            isInstant = instantExecutionCheckbox.checked;
+            const response = await fetch(`${API_URL}?capacity=${capacity}&mode=${mode}&instant=${isInstant}`);
+            const data = await response.json();
+            await visualize(data);
+        } catch (error) {
+            console.error('Error during mission planning:', error);
+            explanationText.textContent = 'Ocorreu um erro durante o planejamento da missão.';
+            planMissionBtn.disabled = false;
+            planMissionBtn.textContent = 'Planejar Carga Ideal!';
+        }
+    }
+});
