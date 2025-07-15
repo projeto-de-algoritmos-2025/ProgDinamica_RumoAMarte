@@ -269,5 +269,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function showFinalSelection(selected_items) {
+        let totalValue = 0;
+        let totalWeight = 0;
 
+        finalCargoContainer.innerHTML = '';
+
+        selected_items.forEach(item => {
+            const card = createItemCard(item);
+            card.classList.add('selected');
+            finalCargoContainer.appendChild(card);
+            totalValue += item.value;
+            totalWeight += item.weight;
+        });
+
+        selectedValueSpan.textContent = totalValue;
+        selectedWeightSpan.textContent = totalWeight;
+    }
 });
